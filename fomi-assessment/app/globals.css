@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Color system
+  ------------
+  Part A (light, /) — warm paper canvas for browsing & generating.
+  Part B (dark, /workspace) — "Studio": a warm near-black darkroom base
+  with a two-accent signature —
+    --amber  = anything the CREATOR controls directly (tools, layers, actions)
+    --cyan   = anything the AI originates (suggestions, co-pilot, inferred edits)
+  The color itself communicates authorship, not just decoration.
+*/
+:root {
+  /* Light theme (Part A) */
+  --canvas: #F6F1E7;
+  --panel: #FFFFFF;
+  --ink: #211D18;
+  --muted: #8A8172;
+  --line: #E7DFCF;
+  --accent: #C7703D;
+  --accent-soft: #F0DCC5;
+  --accent-dark: #A85A2E;
+
+  /* Dark theme (Part B / Studio) */
+  --studio-base: #0C0A08;
+  --studio-panel: #17140F;
+  --studio-line: rgba(245, 240, 232, 0.09);
+  --studio-text: #F3EEE5;
+  --studio-text-dim: rgba(243, 238, 229, 0.5);
+  --amber: #E0954A;
+  --amber-soft: rgba(224, 149, 74, 0.14);
+  --amber-dark: #B96F2C;
+  --cyan: #6FC8CC;
+  --cyan-soft: rgba(111, 200, 204, 0.14);
+  --cyan-dark: #4A9EA3;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-feature-settings: "cv11", "ss01";
+}
+
+.font-mono-num {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.studio {
+  background:
+    radial-gradient(circle at top, rgba(224, 149, 74, 0.06), transparent 22%),
+    linear-gradient(180deg, #0b0908 0%, #0e0b09 100%);
+}
+
+.studio-shell {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.studio-panel {
+  background: linear-gradient(180deg, rgba(23,19,16,0.96), rgba(17,14,12,0.96));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+}
+
+.studio-button {
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: rgba(245,241,234,0.8);
+  transition: all 180ms ease;
+}
+
+.studio-button:hover {
+  border-color: rgba(224,149,74,0.36);
+  background: rgba(224,149,74,0.07);
+  color: #f5f0ea;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.studio :focus-visible {
+  outline-color: var(--amber);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D8CFC0;
+}
+
+.studio ::-webkit-scrollbar-thumb {
+  background: rgba(245, 240, 232, 0.14);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #EFE9DF 0px, #F6F1E9 40px, #EFE9DF 80px);
+  background-size: 600px;
+  animation: shimmer 1.6s infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
